@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Leboncoin Plus",
+  "description": "Shows the first publication date of ads.",
+  "version": "1.0",
+  "author": "Cédric Mourgeon",
+
+  "action": {},
+  "icons": {},
+  "host_permissions": ["https://*.leboncoin.fr/*"],
+  "content_scripts": [{
+    "matches": ["https://*.leboncoin.fr/*"],
+    "js": ["content.js"]
+  }]
+}
