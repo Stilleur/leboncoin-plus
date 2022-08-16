@@ -1,6 +1,4 @@
 (() => {
-  debugger
-
   const nextDataElement = document.getElementById('__NEXT_DATA__')
   if (!nextDataElement) return
 
@@ -39,16 +37,12 @@ function handleListing(ads) {
 }
 
 function handleAd(ad) {
-  const selectors = {
-    date: 'p[data-qa-id=adview_date]',
-  }
-
-  const el = document.querySelector(selectors.date)
-
+  const el = document.querySelector('p[data-qa-id=adview_date]')
   el.textContent = getDateText(ad.first_publication_date)
 }
 
 function getDateText(date) {
-  return `Publié le ${date.toLocaleDateString('fr-FR')}`
+  const _date = new Date(date)
+  return `Publié le ${_date.toLocaleDateString('fr-FR')} (à ${_date.toLocaleTimeString('fr-FR')})`
 }
 
