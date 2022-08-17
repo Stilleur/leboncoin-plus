@@ -10,10 +10,15 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["scripting"],
+  "permissions": ["storage", "webRequest", "scripting"],
   "host_permissions": ["https://www.leboncoin.fr/*"],
+  "content_scripts": [{
+    "matches": ["https://*.leboncoin.fr/*"],
+    "run_at": "document_idle",
+    "js": ["content.js"]
+  }],
   "web_accessible_resources": [{
     "resources": ["leboncoin-plus.js"],
-    "matches": ["https://www.leboncoin.fr/*"]
+    "matches": ["https://*.leboncoin.fr/*"]
   }]
 }
