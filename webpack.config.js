@@ -17,6 +17,7 @@ var options = {
     new CopyPlugin({
       patterns: [
         { from: './src/manifest.json' },
+        { from: './src/icons/*', to: 'icons/[name][ext]' },
       ],
     }),
     new CleanPlugin(),
