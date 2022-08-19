@@ -139,11 +139,13 @@ function getStore() {
 function storeAds(ads) {
   const store = getStore()
 
-  // Replace existing ads and add new ones.
+  // Filter out data > 30 days old now.
+  store.ads = store.ads.filter(a => new Date() - a.at < 1000 * 60 * 60 * 24 * 30)
+
+  // Do not replace existing ads, just add new ones.
   for (const ad of ads) {
-    const index = store.ads.findIndex(a => a.id === ad.id)
-    if (index >= 0) store.ads.splice(index, ad)
-    else store.ads.push(ad)
+    const exists = store.ads.some(a => a.id === ad.id)
+    if (!exists) store.ads.push({ ...ad, at: new Date() })
   }
 
   localStorage.setItem(store.key, JSON.stringify(store))
