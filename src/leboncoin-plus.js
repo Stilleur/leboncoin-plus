@@ -48,8 +48,6 @@ function onNewAd(callback) {
     }
 
     if (hasPossiblyAtLeastOneNewAd) callbackOnAdElements()
-
-    console.log(mutations.flatMap(m => Array.from(m.addedNodes)))
   })
 
   const target = document.getElementById('mainContent')
@@ -77,6 +75,7 @@ function addPublicationDate(el, ad) {
   const pubEl = document.createElement('p')
   pubEl.textContent = `Publié le ${new Date(ad.pub).toLocaleDateString('fr-FR')}`
   pubEl.className = parentEl.lastChild.className
+  parentEl.style.gap = '0 10px'
   parentEl.appendChild(pubEl)
 }
 
