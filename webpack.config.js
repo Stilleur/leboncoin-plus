@@ -1,6 +1,8 @@
 const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 const CleanPlugin = require('clean-webpack-plugin').CleanWebpackPlugin
+const ZipPlugin = require('zip-webpack-plugin')
+
 
 var options = {
   mode: 'production',
@@ -14,13 +16,14 @@ var options = {
     filename: '[name].js',
   },
   plugins: [
+    new CleanPlugin(),
     new CopyPlugin({
       patterns: [
         { from: './src/manifest.json' },
         { from: './src/icons/*', to: 'icons/[name][ext]' },
       ],
     }),
-    new CleanPlugin(),
+    new ZipPlugin({ filename: 'leboncoin-plus.zip'}),
   ],
 }
 
