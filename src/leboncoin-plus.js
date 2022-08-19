@@ -132,7 +132,7 @@ function getStore() {
   const key = 'leboncoin-plus'
   const initialState = { key, ads: [] }
 
-  const _store = localStorage.getItem('leboncoin-plus')
+  const _store = localStorage.getItem(key)
   return JSON.parse(_store) || initialState
 }
 
@@ -140,7 +140,7 @@ function storeAds(ads) {
   const store = getStore()
 
   // Filter out data > 30 days old now.
-  store.ads = store.ads.filter(a => new Date() - a.at < 1000 * 60 * 60 * 24 * 30)
+  store.ads = store.ads.filter(a => new Date() - new Date(a.at) < 1000 * 60 * 60 * 24 * 30)
 
   // Do not replace existing ads, just add new ones.
   for (const ad of ads) {
