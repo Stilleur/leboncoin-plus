@@ -1,0 +1,25 @@
+{
+  "name": "leboncoin-plus",
+  "version": "1.0.0",
+  "description": "Shows the first publication date of ads.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stilleur/leboncoin-first-pub-date.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stilleur/leboncoin-first-pub-date/issues"
+  },
+  "homepage": "https://github.com/Stilleur/leboncoin-first-pub-date#readme"
+}
