@@ -1,11 +1,12 @@
 const uniqueKey = '__LEBONCOIN_PLUS__'
 const srcUrl = chrome.runtime.getURL('leboncoin-plus.js')
 
-chrome.tabs.onUpdated.addListener(async (tabId, _, tab) => {
+chrome.runtime.lastError
+chrome.tabs.onUpdated.addListener((tabId, _, tab) => {
   // The tab.url is only defined when it matches our manifest host permissions.
   // We can inject as soon as we have an url.
-  if (tab?.url?.startsWith && tab.url.startsWith('https://www.leboncoin.fr/')) {
-    const res = await chrome.scripting.executeScript({
+  if (tab?.url) {
+    chrome.scripting.executeScript({
       target: { tabId },
       func: inject,
       args: [srcUrl, uniqueKey],
