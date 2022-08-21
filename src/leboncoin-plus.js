@@ -12,7 +12,7 @@ function onNewAd(callback) {
   const singleAdSelector = 'article#grid'
   const selectors = ['a[data-qa-id=aditem_container]', singleAdSelector]
   const isAdContainer = node => node?.getAttribute && node.getAttribute('data-qa-id') === 'aditem_container'
-  const isSingleAdPage = () => window.location.href.endsWith('.htm')
+  const isSingleAdPage = () => new URL(window.location.href).pathname.endsWith('.htm')
   const possibleNewAdTests = [
     (node) => isAdContainer(node?.parentElement) && !isSingleAdPage(),
     (node) => isAdContainer(node?.lastChild) && !isSingleAdPage(),
@@ -25,8 +25,9 @@ function onNewAd(callback) {
     const store = getStore()
     for (const adEl of adElements) {
       const href = adEl.getAttribute('href') || window.location.href
-      const lastSlashIndex = href.lastIndexOf('/')
-      const id = Number(href.substring(lastSlashIndex + 1, href.length - 4))
+      const from = href.lastIndexOf('/') + 1
+      const to = href.indexOf('.', from)
+      const id = Number(href.substring(from, to))
 
       const ad = store.ads.find(a => a.id === id)
       if (ad) callback(adEl, ad)
